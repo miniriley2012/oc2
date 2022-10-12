@@ -28,8 +28,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 import javax.annotation.Nullable;
 import java.util.*;
 
-import static li.cil.oc2.common.util.RegistryUtils.optionalKey;
-
 public abstract class AbstractBlockDeviceBusElement extends AbstractGroupingDeviceBusElement<AbstractBlockDeviceBusElement.BlockEntry, BlockDeviceQuery> implements BlockDeviceBusElement {
     public AbstractBlockDeviceBusElement() {
         super(Constants.BLOCK_FACE_COUNT);
@@ -203,7 +201,8 @@ public abstract class AbstractBlockDeviceBusElement extends AbstractGroupingDevi
 
             // Grab these while the device info has not yet been invalidated. We still need to access
             // these even after the device has been invalidated to clean up.
-            this.dataKey = optionalKey(deviceInfo.get().provider).orElse(null);
+            var key = Providers.blockDeviceProviderRegistry().getKey(deviceInfo.get().provider);
+            this.dataKey = key != null ? key.toString() : null;
             this.device = deviceInfo.get().device;
         }
 

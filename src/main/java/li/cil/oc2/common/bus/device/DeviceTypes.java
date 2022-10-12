@@ -23,7 +23,7 @@ public final class DeviceTypes {
 
     ///////////////////////////////////////////////////////////////////
 
-    public static final Supplier<IForgeRegistry<DeviceType>> DEVICE_TYPE_REGISTRY = DEVICE_TYPES.makeRegistry(DeviceType.class, RegistryBuilder::new);
+    public static final Supplier<IForgeRegistry<DeviceType>> DEVICE_TYPE_REGISTRY = DEVICE_TYPES.makeRegistry(RegistryBuilder::new);
 
     ///////////////////////////////////////////////////////////////////
 

@@ -16,7 +16,7 @@ public final class LoopingSoundManager {
     public static void play(final BlockEntity blockEntity, final SoundEvent sound, final int delay) {
         stop(blockEntity);
 
-        final LoopingBlockEntitySound instance = new LoopingBlockEntitySound(blockEntity, sound);
+        final LoopingBlockEntitySound instance = new LoopingBlockEntitySound(blockEntity, sound, blockEntity.getLevel().getRandom());
         BLOCK_ENTITY_SOUNDS.put(blockEntity, instance);
         Minecraft.getInstance().getSoundManager().playDelayed(instance, delay);
     }

@@ -10,6 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraftforge.network.NetworkEvent;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 public final class ComputerBootErrorMessage extends AbstractMessage {
     private BlockPos pos;
@@ -31,13 +32,13 @@ public final class ComputerBootErrorMessage extends AbstractMessage {
     @Override
     public void fromBytes(final FriendlyByteBuf buffer) {
         pos = buffer.readBlockPos();
-        value = buffer.readComponent();
+        value = buffer.readOptional(FriendlyByteBuf::readComponent).orElse(null);
     }
 
     @Override
     public void toBytes(final FriendlyByteBuf buffer) {
         buffer.writeBlockPos(pos);
-        buffer.writeComponent(value);
+        buffer.writeOptional(Optional.ofNullable(value), FriendlyByteBuf::writeComponent);
     }
 
     ///////////////////////////////////////////////////////////////////

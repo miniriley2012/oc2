@@ -17,13 +17,13 @@ This mod uses the Terminus Font under the Open Font License. The full license ca
 [[dependencies.oc2]]
 modId = "forge"
 mandatory = true
-versionRange = "[40.1.68,)"
+versionRange = "[43.1.43,)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.oc2]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.18.2,1.19)"
+versionRange = "[1.19.2,1.19.3)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.oc2]]

@@ -20,7 +20,7 @@ public final class FirmwareRegistry {
 
     ///////////////////////////////////////////////////////////////////
 
-    private static final Supplier<IForgeRegistry<Firmware>> REGISTRY = INITIALIZER.makeRegistry(Firmware.class, RegistryBuilder::new);
+    private static final Supplier<IForgeRegistry<Firmware>> REGISTRY = INITIALIZER.makeRegistry(RegistryBuilder::new);
 
     ///////////////////////////////////////////////////////////////////
 
@@ -33,7 +33,7 @@ public final class FirmwareRegistry {
 
     @Nullable
     public static ResourceLocation getKey(final Firmware firmware) {
-        return firmware.getRegistryName();
+        return REGISTRY.get().getKey(firmware);
     }
 
     @Nullable
