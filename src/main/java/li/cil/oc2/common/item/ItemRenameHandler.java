@@ -7,7 +7,8 @@ import net.minecraft.Util;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.MissingMappingsEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,14 +28,14 @@ public final class ItemRenameHandler {
     ///////////////////////////////////////////////////////////////////
 
     public static void initialize() {
-        MinecraftForge.EVENT_BUS.addGenericListener(Item.class, ItemRenameHandler::handleMissingMappings);
+        MinecraftForge.EVENT_BUS.addListener(ItemRenameHandler::handleMissingMappings);
     }
 
     ///////////////////////////////////////////////////////////////////
 
-    private static void handleMissingMappings(final RegistryEvent.MissingMappings<Item> event) {
-        for (final RegistryEvent.MissingMappings.Mapping<Item> mapping : event.getAllMappings()) {
-            final ResourceLocation key = mapping.key;
+    private static void handleMissingMappings(final MissingMappingsEvent event) {
+        for (final MissingMappingsEvent.Mapping<Item> mapping : event.getAllMappings(ForgeRegistries.Keys.ITEMS)) {
+            final ResourceLocation key = mapping.getKey();
             if (key == null || !Objects.equals(key.getNamespace(), API.MOD_ID)) {
                 continue;
             }
