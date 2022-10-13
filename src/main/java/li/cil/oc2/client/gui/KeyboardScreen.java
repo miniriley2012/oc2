@@ -18,11 +18,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.client.gui.ForgeIngameGui;
-import net.minecraftforge.client.gui.OverlayRegistry;
 import org.lwjgl.glfw.GLFW;
-
-import java.util.Random;
 
 public final class KeyboardScreen extends Screen {
     private static final int BORDER_SIZE = 4;
@@ -53,7 +49,7 @@ public final class KeyboardScreen extends Screen {
         grabMouse();
 
         // Disable hotbar since we don't need it here, and it just blocks screen space.
-        OverlayRegistry.enableOverlay(ForgeIngameGui.HOTBAR_ELEMENT, false);
+//        OverlayRegistry.enableOverlay(ForgeIngameGui.HOTBAR_ELEMENT, false);
     }
 
     @Override
@@ -110,7 +106,7 @@ public final class KeyboardScreen extends Screen {
     public void removed() {
         super.removed();
 
-        OverlayRegistry.enableOverlay(ForgeIngameGui.HOTBAR_ELEMENT, true);
+//        OverlayRegistry.enableOverlay(ForgeIngameGui.HOTBAR_ELEMENT, true);
     }
 
     ///////////////////////////////////////////////////////////////////

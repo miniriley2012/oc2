@@ -7,9 +7,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public final class DeviceTypeImpl extends ForgeRegistryEntry<DeviceType> implements DeviceType {
+public final class DeviceTypeImpl implements DeviceType {
     private final TagKey<Item> tag;
     private final ResourceLocation icon;
     private final Component name;
@@ -33,5 +32,10 @@ public final class DeviceTypeImpl extends ForgeRegistryEntry<DeviceType> impleme
     @Override
     public Component getName() {
         return name;
+    }
+
+    @Override
+    public ResourceLocation getRegistryName() {
+        return tag.location();
     }
 }
