@@ -6,7 +6,6 @@ import li.cil.oc2.api.bus.device.data.BlockDeviceData;
 import li.cil.sedna.api.device.BlockDevice;
 import li.cil.sedna.device.block.ByteBufferBlockDevice;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -23,7 +22,7 @@ public final class ResourceBlockDeviceData implements IForgeRegistryEntry<BlockD
     public ResourceBlockDeviceData(final ResourceManager resourceManager, final ResourceLocation location, final String name) throws IOException {
         this.location = location;
         this.name = name;
-        final InputStream stream = resourceManager.getResource(location).getInputStream();
+        final InputStream stream = resourceManager.open(location);
         this.blockDevice = ByteBufferBlockDevice.createFromStream(stream, true);
     }
 
@@ -55,6 +54,6 @@ public final class ResourceBlockDeviceData implements IForgeRegistryEntry<BlockD
 
     @Override
     public Component getDisplayName() {
-        return new TextComponent(name);
+        return Component.literal(name);
     }
 }

@@ -41,6 +41,6 @@ public final class BuildrootBlockDeviceData extends ForgeRegistryEntry<BlockDevi
 
     @Override
     public Component getDisplayName() {
-        return new TextComponent("Sedna Linux");
+        return Component.literal("Sedna Linux");
     }
 }
