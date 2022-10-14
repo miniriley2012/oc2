@@ -3,17 +3,14 @@
 package li.cil.oc2.common.util;
 
 import li.cil.oc2.api.API;
-import li.cil.oc2.api.util.IRegistryItem;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public abstract class RegistryUtils {
     private enum Phase {
@@ -55,18 +52,6 @@ public abstract class RegistryUtils {
         }
 
         ENTRIES.clear();
-    }
-
-    public static <T extends IRegistryItem> String key(final T item) {
-        return item.getRegistryName().toString();
-    }
-
-    public static <T extends IRegistryItem> Optional<String> optionalKey(@Nullable final T item) {
-        if (item == null) {
-            return Optional.empty();
-        }
-
-        return Optional.of(item.getRegistryName().toString());
     }
 
     private RegistryUtils() {

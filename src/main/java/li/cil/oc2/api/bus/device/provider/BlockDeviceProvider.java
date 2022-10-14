@@ -5,7 +5,6 @@ package li.cil.oc2.api.bus.device.provider;
 import li.cil.oc2.api.bus.device.Device;
 import li.cil.oc2.api.bus.device.rpc.RPCDevice;
 import li.cil.oc2.api.bus.device.vm.VMDevice;
-import li.cil.oc2.api.util.IRegistryItem;
 import li.cil.oc2.api.util.Invalidatable;
 import net.minecraft.nbt.CompoundTag;
 
@@ -45,7 +44,7 @@ import net.minecraft.nbt.CompoundTag;
  * @see li.cil.oc2.api.bus.device.vm.VMDevice
  * @see BlockDeviceQuery
  */
-public interface BlockDeviceProvider extends IRegistryItem {
+public interface BlockDeviceProvider {
     /**
      * Get a device for the specified query.
      *

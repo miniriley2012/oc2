@@ -765,7 +765,9 @@ public final class Terminal {
             RenderSystem.setShaderTexture(0, LOCATION_FONT_TEXTURE);
 
             for (final VertexBuffer line : lines) {
+                line.bind();
                 line.drawWithShader(stack.last().pose(), projectionMatrix, shader);
+                VertexBuffer.unbind();
             }
 
             RenderSystem.depthMask(true);
@@ -791,13 +793,15 @@ public final class Terminal {
                 renderBackground(matrix, builder, row);
                 renderForeground(matrix, builder, row);
 
-                builder.end();
+                BufferBuilder.RenderedBuffer buffer = builder.end();
 
                 if (lines[row] == null) {
                     lines[row] = new VertexBuffer();
                 }
 
-                lines[row].upload(builder);
+                lines[row].bind();
+                lines[row].upload(buffer);
+                VertexBuffer.unbind();
             }
         }
 
@@ -934,8 +938,7 @@ public final class Terminal {
             buffer.vertex(matrix, CHAR_WIDTH, 0, 0).color(r, g, b, 1).endVertex();
             buffer.vertex(matrix, 0, 0, 0).color(r, g, b, 1).endVertex();
 
-            buffer.end();
-            BufferUploader.end(buffer);
+            BufferUploader.drawWithShader(buffer.end());
 
             stack.popPose();
 

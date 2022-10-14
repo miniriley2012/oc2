@@ -5,7 +5,6 @@ package li.cil.oc2.api.bus.device.provider;
 import li.cil.oc2.api.bus.device.ItemDevice;
 import li.cil.oc2.api.bus.device.rpc.RPCDevice;
 import li.cil.oc2.api.bus.device.vm.VMDevice;
-import li.cil.oc2.api.util.IRegistryItem;
 import net.minecraft.nbt.CompoundTag;
 
 import javax.annotation.Nullable;
@@ -42,7 +41,7 @@ import java.util.Optional;
  * @see li.cil.oc2.api.bus.device.vm.VMDevice
  * @see ItemDeviceQuery
  */
-public interface ItemDeviceProvider extends IRegistryItem {
+public interface ItemDeviceProvider {
     /**
      * Get a device for the specified query.
      *

@@ -33,9 +33,4 @@ public final class DeviceTypeImpl implements DeviceType {
     public Component getName() {
         return name;
     }
-
-    @Override
-    public ResourceLocation getRegistryName() {
-        return tag.location();
-    }
 }

@@ -2,6 +2,7 @@
 
 package li.cil.oc2.common.network.message;
 
+import io.netty.handler.codec.DecoderException;
 import li.cil.oc2.common.blockentity.ComputerBlockEntity;
 import li.cil.oc2.common.network.MessageUtils;
 import net.minecraft.core.BlockPos;
@@ -31,7 +32,11 @@ public final class ComputerBootErrorMessage extends AbstractMessage {
     @Override
     public void fromBytes(final FriendlyByteBuf buffer) {
         pos = buffer.readBlockPos();
-        value = buffer.readComponent();
+        try {
+            value = buffer.readComponent();
+        } catch (DecoderException ignored) {
+            value = null;
+        }
     }
 
     @Override

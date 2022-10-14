@@ -21,8 +21,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 import javax.annotation.Nullable;
 import java.util.*;
 
-import static li.cil.oc2.common.util.RegistryUtils.optionalKey;
-
 public abstract class AbstractItemDeviceBusElement extends AbstractGroupingDeviceBusElement<AbstractItemDeviceBusElement.ItemEntry, ItemDeviceQuery> {
     public AbstractItemDeviceBusElement(final int groupCount) {
         super(groupCount);
@@ -126,7 +124,8 @@ public abstract class AbstractItemDeviceBusElement extends AbstractGroupingDevic
     ///////////////////////////////////////////////////////////////////
 
     protected final class ItemQueryResult extends QueryResult {
-        @Nullable private final ItemDeviceQuery query;
+        @Nullable
+        private final ItemDeviceQuery query;
         private final Set<ItemEntry> entries;
 
         public ItemQueryResult(@Nullable final ItemDeviceQuery query, final Set<ItemEntry> entries) {
@@ -149,7 +148,8 @@ public abstract class AbstractItemDeviceBusElement extends AbstractGroupingDevic
     protected record ItemEntry(ItemDeviceInfo deviceInfo) implements Entry {
         @Override
         public Optional<String> getDeviceDataKey() {
-            return optionalKey(deviceInfo.provider);
+            return Optional.ofNullable(Providers.itemDeviceProviderRegistry().getKey(deviceInfo.provider))
+                .map(ResourceLocation::toString);
         }
 
         @Override

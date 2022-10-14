@@ -20,7 +20,7 @@ public final class BlockDeviceDataRegistry {
 
     ///////////////////////////////////////////////////////////////////
 
-    private static final Supplier<IForgeRegistry<BlockDeviceData>> REGISTRY = INITIALIZER.makeRegistry(BlockDeviceData.class, RegistryBuilder::new);
+    private static final Supplier<IForgeRegistry<BlockDeviceData>> REGISTRY = INITIALIZER.makeRegistry(RegistryBuilder::new);
 
     ///////////////////////////////////////////////////////////////////
 
@@ -33,7 +33,7 @@ public final class BlockDeviceDataRegistry {
 
     @Nullable
     public static ResourceLocation getKey(final BlockDeviceData data) {
-        return data.getRegistryName();
+        return REGISTRY.get().getKey(data);
     }
 
     @Nullable

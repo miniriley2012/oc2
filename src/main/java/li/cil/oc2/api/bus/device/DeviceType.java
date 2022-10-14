@@ -3,13 +3,15 @@
 package li.cil.oc2.api.bus.device;
 
 import li.cil.oc2.api.API;
-import li.cil.oc2.api.util.IRegistryItem;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryManager;
+
+import java.util.Objects;
 
 /**
  * Implementations describe individual slot types. Slot types are only used
@@ -18,13 +20,17 @@ import net.minecraft.world.item.Item;
  * <p>
  * For built-in slot types, see {@link DeviceTypes}.
  */
-public interface DeviceType extends IRegistryItem {
+public interface DeviceType {
     String REGISTRY_NAME = API.MOD_ID + ":device_type";
 
     /**
      * The registry name of the registry holding device types.
      */
     ResourceKey<Registry<DeviceType>> REGISTRY = ResourceKey.createRegistryKey(new ResourceLocation(API.MOD_ID, "device_type"));
+
+    static String key(DeviceType type) {
+        return Objects.requireNonNull(RegistryManager.ACTIVE.getRegistry(REGISTRY).getKey(type)).toString();
+    }
 
     /**
      * The tag representing this device type.

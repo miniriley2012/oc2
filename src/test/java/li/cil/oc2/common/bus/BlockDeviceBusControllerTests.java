@@ -28,7 +28,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.registries.IForgeRegistry;
-import org.jetbrains.annotations.Nullable;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -676,22 +675,6 @@ public class BlockDeviceBusControllerTests {
 
     private static class TestBlockDeviceProvider implements BlockDeviceProvider {
         @Override
-        public BlockDeviceProvider setRegistryName(final ResourceLocation name) {
-            return this;
-        }
-
-        @Nullable
-        @Override
-        public ResourceLocation getRegistryName() {
-            return TEST_PROVIDER_REGISTRY_NAME;
-        }
-
-        @Override
-        public Class<BlockDeviceProvider> getRegistryType() {
-            return BlockDeviceProvider.class;
-        }
-
-        @Override
         public Invalidatable<Device> getDevice(final BlockDeviceQuery query) {
             final LevelAccessor level = query.getLevel();
             final BlockEntity blockEntity = level.getBlockEntity(query.getQueryPosition());
@@ -704,22 +687,6 @@ public class BlockDeviceBusControllerTests {
     }
 
     private static class TestItemDeviceProvider implements ItemDeviceProvider {
-        @Override
-        public ItemDeviceProvider setRegistryName(final ResourceLocation name) {
-            return this;
-        }
-
-        @Nullable
-        @Override
-        public ResourceLocation getRegistryName() {
-            return TEST_PROVIDER_REGISTRY_NAME;
-        }
-
-        @Override
-        public Class<ItemDeviceProvider> getRegistryType() {
-            return ItemDeviceProvider.class;
-        }
-
         @Override
         public Optional<ItemDevice> getDevice(final ItemDeviceQuery query) {
             return Optional.empty();
