@@ -2,7 +2,6 @@
 
 package li.cil.oc2.common.network.message;
 
-import io.netty.handler.codec.DecoderException;
 import li.cil.oc2.common.blockentity.ComputerBlockEntity;
 import li.cil.oc2.common.network.MessageUtils;
 import net.minecraft.core.BlockPos;
@@ -11,6 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraftforge.network.NetworkEvent;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 public final class ComputerBootErrorMessage extends AbstractMessage {
     private BlockPos pos;
@@ -32,17 +32,13 @@ public final class ComputerBootErrorMessage extends AbstractMessage {
     @Override
     public void fromBytes(final FriendlyByteBuf buffer) {
         pos = buffer.readBlockPos();
-        try {
-            value = buffer.readComponent();
-        } catch (DecoderException ignored) {
-            value = null;
-        }
+        value = buffer.readOptional(FriendlyByteBuf::readComponent).orElse(null);
     }
 
     @Override
     public void toBytes(final FriendlyByteBuf buffer) {
         buffer.writeBlockPos(pos);
-        buffer.writeComponent(value);
+        buffer.writeOptional(Optional.ofNullable(value), FriendlyByteBuf::writeComponent);
     }
 
     ///////////////////////////////////////////////////////////////////

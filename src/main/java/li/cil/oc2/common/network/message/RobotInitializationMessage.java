@@ -12,6 +12,8 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.network.NetworkEvent;
 
+import java.util.Optional;
+
 public final class RobotInitializationMessage extends AbstractMessage {
     private int entityId;
     private CommonDeviceBusController.BusState busState;
@@ -40,7 +42,7 @@ public final class RobotInitializationMessage extends AbstractMessage {
         entityId = buffer.readVarInt();
         busState = buffer.readEnum(CommonDeviceBusController.BusState.class);
         runState = buffer.readEnum(VMRunState.class);
-        bootError = buffer.readComponent();
+        bootError = buffer.readOptional(FriendlyByteBuf::readComponent).orElse(null);
         terminal = buffer.readNbt();
     }
 
@@ -49,7 +51,7 @@ public final class RobotInitializationMessage extends AbstractMessage {
         buffer.writeVarInt(entityId);
         buffer.writeEnum(busState);
         buffer.writeEnum(runState);
-        buffer.writeComponent(bootError);
+        buffer.writeOptional(Optional.ofNullable(bootError), FriendlyByteBuf::writeComponent);
         buffer.writeNbt(terminal);
     }
 
