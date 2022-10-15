@@ -17,7 +17,7 @@ This mod uses the Terminus Font under the Open Font License. The full license ca
 [[dependencies.oc2]]
 modId = "forge"
 mandatory = true
-versionRange = "[43.1.39,)"
+versionRange = "[43.1.43,)"
 ordering = "NONE"
 side = "BOTH"
 [[dependencies.oc2]]
@@ -35,5 +35,5 @@ side = "BOTH"
 [[dependencies.oc2]]
 modId = "markdown_manual"
 mandatory = true
-versionRange = "[1.2.1,)"
+versionRange = "[0.0.0,)"
 side = "CLIENT"
