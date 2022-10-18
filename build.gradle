@@ -53,7 +53,9 @@ repositories {
         final def GithubPackages = [
             ["fnuecke/ceres", "li.cil.ceres"],
             ["fnuecke/sedna", "li.cil.sedna"],
-            ["fnuecke/buildroot", "li.cil.sedna"]
+            ["fnuecke/buildroot", "li.cil.sedna"],
+            ["miniriley2012/SednaMinecraft", "li.cil.sedna"],
+            ["miniriley2012/MarkdownManual", "li.cil.markdown_manual"]
         ]
         GithubPackages.each { final repo, final group ->
             maven {
@@ -81,9 +83,9 @@ dependencies {
         compileOnly "li.cil.sedna:sedna:2.0.8"
         compileOnly "li.cil.sedna:sedna-buildroot:0.0.8"
     }
-    implementation "curse.maven:sedna-511276:3885542"
+    implementation "li.cil.sedna:sedna-1.19.2-forge:1.0.15"
 
-    implementation fg.deobf("curse.maven:markdownmanual-502485:3738124")
+    implementation fg.deobf("li.cil.markdown_manual:markdown_manual-1.19.2-forge:1.2.3")
 
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
