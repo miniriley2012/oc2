@@ -3,12 +3,11 @@
 package li.cil.oc2.client.item;
 
 import li.cil.oc2.common.item.Items;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeableLeatherItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 
 public final class CustomItemColors {
     public static final int BLACK = 0xFF404040;
@@ -35,8 +34,7 @@ public final class CustomItemColors {
 
     ///////////////////////////////////////////////////////////////////
 
-    public static void initialize() {
-        final ItemColors itemColors = Minecraft.getInstance().getItemColors();
+    public static void initialize(final RegisterColorHandlersEvent.Item itemColors) {
         itemColors.register((stack, layer) -> layer == 1 ? getColor(stack) : NO_TINT,
             Items.HARD_DRIVE_SMALL.get(),
             Items.HARD_DRIVE_MEDIUM.get(),

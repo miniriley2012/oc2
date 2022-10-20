@@ -155,6 +155,11 @@ public record BusCableBakedModel(
         return blockEntityData;
     }
 
+    @Override
+    public ChunkRenderTypeSet getRenderTypes(@NotNull final BlockState state, @NotNull final RandomSource rand, @NotNull final ModelData data) {
+        return ChunkRenderTypeSet.all();
+    }
+
     ///////////////////////////////////////////////////////////////////
 
     private static boolean isNeighborInDirectionSolid(final BlockAndTintGetter level, final BlockPos pos, final Direction direction) {
