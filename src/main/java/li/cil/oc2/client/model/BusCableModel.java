@@ -55,7 +55,7 @@ public record BusCableModel(ElementsModel proxy) implements IUnbakedGeometry<Bus
         return textures;
     }
 
-    private ModelState composeModelState(ModelState first, ModelState second) {
+    private static ModelState composeModelState(ModelState first, ModelState second) {
         return new SimpleModelState(first.getRotation().compose(second.getRotation()));
     }
 }

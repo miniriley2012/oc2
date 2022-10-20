@@ -35,5 +35,5 @@ side = "BOTH"
 [[dependencies.oc2]]
 modId = "markdown_manual"
 mandatory = true
-versionRange = "[0.0.0,)"
+versionRange = "[1.2.1,)"
 side = "CLIENT"
